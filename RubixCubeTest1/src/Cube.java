@@ -16,36 +16,45 @@
 
 class Cube {
 
-	enum Color {
-		G, B, R, O, W, Y
-	}
-
+	int FRONT = 0;
+	int BACK = 1;
+	int RIGHT = 2;
+	int LEFT = 3;
+	int UP = 4;
+	int DOWN = 5;
+	
+	/*
+	int GREEN = 1;
+	int BLUE = 2;
+	int RED = 3;
+	int ORANGE = 4;
+	int WHITE = 5;
+	int YELLOW = 6;
+	*/
+	
 	//get input from console for each row of face
-	public static void setFace(Color face[][]) {
+	public static void setFace(int side, char face[][][]) {
 
 		String str = "";
 
-		for (int j = 0; j < 3; j++) {
-			TextIO.putln("Enter row " + (j+1) + " of cube colors for face "
-					+ "FACEHERE " + "as G,B,R,O,W, or Y");
+		for (int row = 0; row < 3; row++) {
+			TextIO.putln("Enter row " + (row+1) + " of cube colors for face "
+					+ side + "as G,B,R,O,W, or Y");
 			str = TextIO.getln();
-			for (int k = 0; k < 3; k++) {
-				face[j][k] = Color.valueOf(str.substring(k, k+1));
-				//OPTIONAL
-				//TextIO.putln("Color at green face at " + j + "," + k
-				//		+ "is now: " + face[j][k].toString());
+			for (int col = 0; col < 3; col++) {
+				face[side][row][col] = str.toLowerCase().charAt(col);
 			}
 		}
 
 	}
 	
 	//print the face to console
-	public static void printFace(Color face[][]) {
+	public static void printFace( int side,char face[][][]) {
 		
 		String str = "";
-		for ( int j = 0; j < 3; j++){
-		for ( int k = 0; k < 3; k++){
-			str += face[j][k].toString() + " ";
+		for ( int row = 0; row < 3; row++){
+		for ( int col = 0; col < 3; col++){
+			str += face[side][row][col] + " ";
 		}
 		TextIO.putln(str);
 		str = "";
@@ -58,22 +67,10 @@ class Cube {
 	
 	public static void main(String[] args) {
 		
-		Color greenFace[][] = new Color[3][3];
-		Color blueFace[][] = new Color[3][3];
-		//Color redFace[][] = new Color[3][3];
-		//Color orangeFace[][] = new Color[3][3];
-		//Color whiteFace[][] = new Color[3][3];
-		//Color yellowFace[][] = new Color[3][3];
+		char faces[][][] = new char[6][3][3];
 		
-		setFace(greenFace);
-		setFace(blueFace);
-		//setFace(redFace);
-		//setFace(orangeFace);
-		//setFace(whiteFace);
-		//setFace(yellowFace);
-		
-		printFace(greenFace);
-		printFace(blueFace);
+		setFace(2,faces);	
+		printFace(2,faces);
 
 	}
 }
