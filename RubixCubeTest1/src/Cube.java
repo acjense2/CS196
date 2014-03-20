@@ -3,25 +3,27 @@
  * using Ryan Heise's beginner method
  * http://www.ryanheise.com/cube/beginner.html
  * 
- * front = green
- * back = blue
- * right = red
- * left = orange
- * up = white
- * down = yellow
  */
 
 class Cube {
 
-	static int FRONT = 0; // green
-	static int BACK = 1; // blue
-	static int RIGHT = 2; // red
-	static int LEFT = 3; // orange
-	static int UP = 4; // white
-	static int DOWN = 5; // yellow
+	static int FRONT = 0;
+	static int BACK = 1;
+	static int RIGHT = 2;
+	static int LEFT = 3;
+	static int UP = 4;
+	static int DOWN = 5;
+
+	final static int GREEN = 0;
+	final static int BLUE = 1;
+	final static int RED = 2;
+	final static int ORANGE = 3;
+	final static int WHITE = 4;
+	final static int YELLOW = 5;
 
 	// 6 faces, 3 rows, 3 columns
 	private char faces[][][] = new char[6][3][3];
+	private int orientation = FRONT;
 
 	// public static char completeCube[][][] = new char[6][3][3];
 
@@ -47,7 +49,7 @@ class Cube {
 		}
 	}
 
-	//gets input from console for all faces
+	// gets input from console for all faces
 	public void setAllFaces() {
 		for (int i = 0; i < 6; i++) {
 			setFace(i);
@@ -89,7 +91,7 @@ class Cube {
 		return cube;
 	}
 
-	//returns a random color as a character
+	// returns a random color as a character
 	public static char randomColor() {
 		int randInt = (int) (Math.random() * 6);
 		char randChar;
@@ -132,19 +134,19 @@ class Cube {
 		TextIO.putln();
 	}
 
-	//prints all faces to console
+	// prints all faces to console
 	public void printAllFaces() {
 		for (int i = 0; i < 6; i++) {
 			printFace(i);
 		}
 	}
 
-	//returns the color at specified position
+	// returns the color at specified position
 	public char colorAt(int side, int row, int col) {
 		return faces[side][row][col];
 	}
 
-	//algorithm one
+	// algorithm one
 	public boolean algOne() {
 		// search cube for wanted colors
 		// when colors are found, employ combinations of basic
@@ -153,84 +155,224 @@ class Cube {
 						// true if error
 	}
 
-	//turns the face to the right of the current orientation clockwise
-	//orientation is the face that is facing you currently
-	public char[][][] RightRotationCW(int orientation) {
+	public void setOrientation(int orient) {
+		orientation = orient;
+		switch (orientation) {
+		case GREEN:
+			FRONT = GREEN;
+			BACK = BLUE;
+			RIGHT = RED;
+			LEFT = ORANGE;
+			UP = WHITE;
+			DOWN = YELLOW;
+			break;
+		case BLUE:
+			FRONT = BLUE;
+			BACK = GREEN;
+			RIGHT = ORANGE;
+			LEFT = RED;
+			UP = WHITE;
+			DOWN = YELLOW;
+			break;
+		case RED:
+			FRONT = RED;
+			BACK = ORANGE;
+			RIGHT = BLUE;
+			LEFT = GREEN;
+			UP = WHITE;
+			DOWN = YELLOW;
+			break;
+		case ORANGE:
+			FRONT = ORANGE;
+			BACK = RED;
+			RIGHT = GREEN;
+			LEFT = BLUE;
+			UP = WHITE;
+			DOWN = YELLOW;
+			break;
+		case WHITE:
+			FRONT = WHITE;
+			BACK = YELLOW;
+			RIGHT = RED;
+			LEFT = ORANGE;
+			UP = BLUE;
+			DOWN = GREEN;
+			break;
+		case YELLOW:
+			FRONT = YELLOW;
+			BACK = WHITE;
+			RIGHT = RED;
+			LEFT = ORANGE;
+			UP = GREEN;
+			DOWN = BLUE;
+			break;
+		}
+	}
+
+	public void printOrientation() {
+		TextIO.putln("ORIENTATION: " + orientation);
+		TextIO.putln("Front: " + FRONT);
+		TextIO.putln("Back: " + BACK);
+		TextIO.putln("RIGHT: " + RIGHT);
+		TextIO.putln("LEFT: " + LEFT);
+		TextIO.putln("UP: " + UP);
+		TextIO.putln("DOWN: " + DOWN);
+	}
+
+	// turns the face to the right of the current orientation clockwise
+	public char[][][] RightRotationCW() {
 
 		char temp1, temp2, temp3;
 
-		if (orientation == FRONT || orientation == BACK || orientation == UP
-				|| orientation == DOWN) {
-			temp1 = faces[4][1 - 1][3 - 1];
-			temp2 = faces[4][2 - 1][3 - 1];
-			temp3 = faces[4][3 - 1][3 - 1];
+		// swapped right and left columns to keep orientation consistent
+		temp1 = faces[UP][1 - 1][3 - 1];
+		temp2 = faces[UP][2 - 1][3 - 1];
+		temp3 = faces[UP][3 - 1][3 - 1];
 
-			faces[4][1 - 1][3 - 1] = faces[0][1 - 1][3 - 1];
-			faces[4][2 - 1][3 - 1] = faces[0][2 - 1][3 - 1];
-			faces[4][3 - 1][3 - 1] = faces[0][3 - 1][3 - 1];
+		faces[UP][1 - 1][3 - 1] = faces[FRONT][1 - 1][3 - 1];
+		faces[UP][2 - 1][3 - 1] = faces[FRONT][2 - 1][3 - 1];
+		faces[UP][3 - 1][3 - 1] = faces[FRONT][3 - 1][3 - 1];
 
-			faces[0][1 - 1][3 - 1] = faces[5][1 - 1][3 - 1];
-			faces[0][2 - 1][3 - 1] = faces[5][2 - 1][3 - 1];
-			faces[0][3 - 1][3 - 1] = faces[5][3 - 1][3 - 1];
+		faces[FRONT][1 - 1][3 - 1] = faces[DOWN][1 - 1][3 - 1];
+		faces[FRONT][2 - 1][3 - 1] = faces[DOWN][2 - 1][3 - 1];
+		faces[FRONT][3 - 1][3 - 1] = faces[DOWN][3 - 1][3 - 1];
 
-			faces[5][1 - 1][3 - 1] = faces[1][1 - 1][3 - 1];
-			faces[5][2 - 1][3 - 1] = faces[1][2 - 1][3 - 1];
-			faces[5][3 - 1][3 - 1] = faces[1][3 - 1][3 - 1];
+		faces[DOWN][1 - 1][3 - 1] = faces[BACK][1 - 1][3 - 1];
+		faces[DOWN][2 - 1][3 - 1] = faces[BACK][2 - 1][3 - 1];
+		faces[DOWN][3 - 1][3 - 1] = faces[BACK][3 - 1][3 - 1];
 
-			faces[1][1 - 1][3 - 1] = temp1;
-			faces[1][2 - 1][3 - 1] = temp2;
-			faces[1][3 - 1][3 - 1] = temp3;
-			// Rotates right column of chosen face and changes value for each
-			// part of that column
+		// swapped right and left columns to keep orientation consistent
+		faces[BACK][1 - 1][1 - 1] = temp1;
+		faces[BACK][2 - 1][1 - 1] = temp2;
+		faces[BACK][3 - 1][1 - 1] = temp3;
+		// Rotates right column of chosen face and changes value for each
+		// part of that column
 
-			temp1 = faces[2][1 - 1][2 - 1];
-			faces[2][1 - 1][2 - 1] = faces[2][2 - 1][1 - 1];
-			faces[2][2 - 1][1 - 1] = faces[2][3 - 1][2 - 1];
-			faces[2][3 - 1][2 - 1] = faces[2][2 - 1][3 - 1];
-			faces[2][2 - 1][3 - 1] = temp1;
+		temp1 = faces[RIGHT][1 - 1][2 - 1];
+		faces[RIGHT][1 - 1][2 - 1] = faces[RIGHT][2 - 1][1 - 1];
+		faces[RIGHT][2 - 1][1 - 1] = faces[RIGHT][3 - 1][2 - 1];
+		faces[RIGHT][3 - 1][2 - 1] = faces[RIGHT][2 - 1][3 - 1];
+		faces[RIGHT][2 - 1][3 - 1] = temp1;
 
-			temp2 = faces[2][1 - 1][1 - 1];
-			faces[2][1 - 1][1 - 1] = faces[2][3 - 1][1 - 1];
-			faces[2][3 - 1][1 - 1] = faces[2][3 - 1][3 - 1];
-			faces[2][3 - 1][3 - 1] = faces[2][1 - 1][3 - 1];
-			faces[2][1 - 1][3 - 1] = temp2;
-			// Rotates face adjacent to right column
-		} else if (orientation == RIGHT || orientation == LEFT) {
-			temp1 = faces[2][1 - 1][3 - 1];
-			temp2 = faces[2][2 - 1][3 - 1];
-			temp3 = faces[2][3 - 1][3 - 1];
-
-			faces[2][1 - 1][3 - 1] = faces[1][1 - 1][3 - 1];
-			faces[2][2 - 1][3 - 1] = faces[1][2 - 1][3 - 1];
-			faces[2][3 - 1][3 - 1] = faces[1][3 - 1][3 - 1];
-
-			faces[1][1 - 1][3 - 1] = faces[3][1 - 1][3 - 1];
-			faces[1][2 - 1][3 - 1] = faces[3][2 - 1][3 - 1];
-			faces[1][3 - 1][3 - 1] = faces[3][3 - 1][3 - 1];
-
-			faces[3][1 - 1][3 - 1] = faces[0][1 - 1][3 - 1];
-			faces[3][2 - 1][3 - 1] = faces[0][2 - 1][3 - 1];
-			faces[3][3 - 1][3 - 1] = faces[0][3 - 1][3 - 1];
-
-			faces[0][1 - 1][3 - 1] = temp1;
-			faces[0][2 - 1][3 - 1] = temp2;
-			faces[0][3 - 1][3 - 1] = temp3;
-			// Rotates right column of chosen face and changes value for each
-			// part of that column
-
-			temp1 = faces[4][1 - 1][2 - 1];
-			faces[4][1 - 1][2 - 1] = faces[4][2 - 1][1 - 1];
-			faces[4][2 - 1][1 - 1] = faces[4][3 - 1][2 - 1];
-			faces[4][3 - 1][2 - 1] = faces[4][2 - 1][3 - 1];
-			faces[4][2 - 1][3 - 1] = temp1;
-
-			temp2 = faces[4][1 - 1][1 - 1];
-			faces[4][1 - 1][1 - 1] = faces[4][3 - 1][1 - 1];
-			faces[4][3 - 1][1 - 1] = faces[4][3 - 1][3 - 1];
-			faces[4][3 - 1][3 - 1] = faces[4][1 - 1][3 - 1];
-			faces[4][1 - 1][3 - 1] = temp2;
-			// Rotates face adjacent to right column
-		}
+		temp2 = faces[RIGHT][1 - 1][1 - 1];
+		faces[RIGHT][1 - 1][1 - 1] = faces[RIGHT][3 - 1][1 - 1];
+		faces[RIGHT][3 - 1][1 - 1] = faces[RIGHT][3 - 1][3 - 1];
+		faces[RIGHT][3 - 1][3 - 1] = faces[RIGHT][1 - 1][3 - 1];
+		faces[RIGHT][1 - 1][3 - 1] = temp2;
+		// Rotates face adjacent to right column
 		return faces;// Returns new rubik's cube
+	}
+
+	private void rotateArray(int face, int times) {
+		for (int i = 0; i < times; i++) {
+			char temp1 = faces[face][1 - 1][2 - 1];
+			faces[face][1 - 1][2 - 1] = faces[face][2 - 1][1 - 1];
+			faces[face][2 - 1][1 - 1] = faces[face][3 - 1][2 - 1];
+			faces[face][3 - 1][2 - 1] = faces[face][2 - 1][3 - 1];
+			faces[face][2 - 1][3 - 1] = temp1;
+
+			char temp2 = faces[face][1 - 1][1 - 1];
+			faces[face][1 - 1][1 - 1] = faces[face][3 - 1][1 - 1];
+			faces[face][3 - 1][1 - 1] = faces[face][3 - 1][3 - 1];
+			faces[face][3 - 1][3 - 1] = faces[face][1 - 1][3 - 1];
+			faces[face][1 - 1][3 - 1] = temp2;
+		}
+	}
+
+	public void rotateFace(int face) {
+		setOrientation(face);
+
+		char temp1, temp2, temp3;
+
+		switch (face) {
+		case GREEN:
+			temp1 = faces[UP][3 - 1][1 - 1];
+			temp2 = faces[UP][3 - 1][2 - 1];
+			temp3 = faces[UP][3 - 1][3 - 1];
+
+			faces[UP][3 - 1][3 - 1] = faces[LEFT][1 - 1][3 - 1];
+			faces[UP][3 - 1][2 - 1] = faces[LEFT][2 - 1][3 - 1];
+			faces[UP][3 - 1][1 - 1] = faces[LEFT][3 - 1][3 - 1];
+
+			faces[LEFT][1 - 1][3 - 1] = faces[DOWN][1 - 1][1 - 1];
+			faces[LEFT][2 - 1][3 - 1] = faces[DOWN][1 - 1][2 - 1];
+			faces[LEFT][3 - 1][3 - 1] = faces[DOWN][1 - 1][3 - 1];
+
+			faces[DOWN][1 - 1][3 - 1] = faces[RIGHT][1 - 1][1 - 1];
+			faces[DOWN][1 - 1][2 - 1] = faces[RIGHT][2 - 1][1 - 1];
+			faces[DOWN][1 - 1][1 - 1] = faces[RIGHT][3 - 1][1 - 1];
+
+			faces[RIGHT][1 - 1][1 - 1] = temp1;
+			faces[RIGHT][2 - 1][1 - 1] = temp2;
+			faces[RIGHT][3 - 1][1 - 1] = temp3;
+
+			// rotate front face
+			rotateArray(FRONT,1);
+
+			break;
+		case BLUE:
+			
+			temp1 = faces[UP][3 - 1][1 - 1];
+			temp2 = faces[UP][3 - 1][2 - 1];
+			temp3 = faces[UP][3 - 1][3 - 1];
+
+			faces[UP][3 - 1][3 - 1] = faces[LEFT][1 - 1][3 - 1];
+			faces[UP][3 - 1][2 - 1] = faces[LEFT][2 - 1][3 - 1];
+			faces[UP][3 - 1][1 - 1] = faces[LEFT][3 - 1][3 - 1];
+
+			faces[LEFT][1 - 1][3 - 1] = faces[DOWN][1 - 1][1 - 1];
+			faces[LEFT][2 - 1][3 - 1] = faces[DOWN][1 - 1][2 - 1];
+			faces[LEFT][3 - 1][3 - 1] = faces[DOWN][1 - 1][3 - 1];
+
+			faces[DOWN][1 - 1][3 - 1] = faces[RIGHT][1 - 1][1 - 1];
+			faces[DOWN][1 - 1][2 - 1] = faces[RIGHT][2 - 1][1 - 1];
+			faces[DOWN][1 - 1][1 - 1] = faces[RIGHT][3 - 1][1 - 1];
+
+			faces[RIGHT][1 - 1][1 - 1] = temp1;
+			faces[RIGHT][2 - 1][1 - 1] = temp2;
+			faces[RIGHT][3 - 1][1 - 1] = temp3;
+
+			// rotate front face
+			rotateArray(FRONT,1);
+
+			break;
+		case RED:
+			temp1 = faces[UP][1 - 1][3 - 1];
+			temp2 = faces[UP][2 - 1][3 - 1];
+			temp3 = faces[UP][3 - 1][3 - 1];
+
+			faces[UP][1 - 1][3 - 1] = faces[FRONT][1 - 1][3 - 1];
+			faces[UP][2 - 1][3 - 1] = faces[FRONT][2 - 1][3 - 1];
+			faces[UP][3 - 1][3 - 1] = faces[FRONT][3 - 1][3 - 1];
+
+			faces[FRONT][1 - 1][3 - 1] = faces[DOWN][1 - 1][3 - 1];
+			faces[FRONT][2 - 1][3 - 1] = faces[DOWN][2 - 1][3 - 1];
+			faces[FRONT][3 - 1][3 - 1] = faces[DOWN][3 - 1][3 - 1];
+
+			faces[DOWN][1 - 1][3 - 1] = faces[BACK][1 - 1][3 - 1];
+			faces[DOWN][2 - 1][3 - 1] = faces[BACK][2 - 1][3 - 1];
+			faces[DOWN][3 - 1][3 - 1] = faces[BACK][3 - 1][3 - 1];
+
+			// swapped right and left columns to keep orientation consistent
+			faces[BACK][1 - 1][1 - 1] = temp1;
+			faces[BACK][2 - 1][1 - 1] = temp2;
+			faces[BACK][3 - 1][1 - 1] = temp3;
+			// Rotates right column of chosen face and changes value for each
+			// part of that column
+
+			temp1 = faces[RIGHT][1 - 1][2 - 1];
+			faces[RIGHT][1 - 1][2 - 1] = faces[RIGHT][2 - 1][1 - 1];
+			faces[RIGHT][2 - 1][1 - 1] = faces[RIGHT][3 - 1][2 - 1];
+			faces[RIGHT][3 - 1][2 - 1] = faces[RIGHT][2 - 1][3 - 1];
+			faces[RIGHT][2 - 1][3 - 1] = temp1;
+
+			temp2 = faces[RIGHT][1 - 1][1 - 1];
+			faces[RIGHT][1 - 1][1 - 1] = faces[RIGHT][3 - 1][1 - 1];
+			faces[RIGHT][3 - 1][1 - 1] = faces[RIGHT][3 - 1][3 - 1];
+			faces[RIGHT][3 - 1][3 - 1] = faces[RIGHT][1 - 1][3 - 1];
+			faces[RIGHT][1 - 1][3 - 1] = temp2;
+			// Rotates face adjacent to right column
+			break;
+		}
 	}
 }
