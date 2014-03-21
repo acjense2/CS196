@@ -1,23 +1,28 @@
-public class solveCube {
+public class solveCube extends Cube {
 
+	/**
+	 * employ whatever algorithms (and perms if you want) here. Need scanner
+	 * class to know what algorithms to use here!!! Ideas Jordan? Use the
+	 * ryanheise.com/cube/beginner.html website for ideas on scanner
+	 * **/
 	public static void main(String[] args) {
 
-		Permutation perms = new Permutation();
+		Algorithms cube = new Algorithms();
 
-		TextIO.putln(perms.toString(false));
-		perms.rotate(1);
-		TextIO.putln(perms.toString(true));
+		TextIO.putln(cube.toString(false));
+		cube.rotateCW(1);
+		cube.rotateCW(4);
+		cube.rotateCCW(1);
+		TextIO.putln(cube.toString(true));
 
-		boolean error = false;
-		while (!error) {
-			/*
-			 * call algorithm methods from class Cube here, in order. set them
-			 * equal to the variable error. have algorithm methods return true
-			 * if there is an error (i.e. it can't find the color it is looking
-			 * for)
-			 */
-			error = true;
-		}
+		cube.reset();
+
+		TextIO.putln(cube.toString(false));
+		cube.setOrientation(RED);
+		cube.swapCrossPieces(1);
+		TextIO.putln(cube.toString(true));
+		cube.swapCrossPieces(1);
+		TextIO.putln(cube.toString(true));
 
 	}
 
