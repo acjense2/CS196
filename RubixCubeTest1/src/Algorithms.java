@@ -11,14 +11,14 @@ public class Algorithms extends Permutation {
 		if (caseNum < 1 || caseNum > 2)
 			throw new RuntimeException("Invalid case number " + caseNum);
 		switch (caseNum) {
-		case 1:
+		case 1: //adjacent faced pairs
 			rotate180(RIGHT);
 			rotateCW(UP);
 			rotate180(FRONT);
 			rotateCCW(UP);
 			rotate180(RIGHT);
 			break;
-		case 2:
+		case 2: //opposite faced pairs
 			rotate180(RIGHT);
 			rotate180(UP);
 			rotate180(FRONT);

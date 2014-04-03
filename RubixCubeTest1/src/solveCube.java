@@ -7,7 +7,7 @@ public class solveCube extends Cube {
 	 * **/
 	public static void main(String[] args) {
 
-		Algorithms cube = new Algorithms();
+		Scanner cube = new Scanner();
 
 		TextIO.putln(cube.toString(false));
 		cube.rotateCW(1);

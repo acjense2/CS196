@@ -27,6 +27,7 @@ public class Cube {
 	protected int UP = 4;
 	protected int DOWN = 5;
 
+	//cube constructor
 	protected Cube(){
 		reset();
 	}
