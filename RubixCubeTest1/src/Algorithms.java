@@ -1,7 +1,6 @@
 /**
- * Algorithms class
- * contains algorithms: sets of permutations
- * DONT FORGET TO SET CUBE ORIENTATION BEFORE DOING ALGS
+ * Algorithms class contains algorithms: sets of permutations DONT FORGET TO SET
+ * CUBE ORIENTATION BEFORE DOING ALGS
  */
 public class Algorithms extends Permutation {
 
@@ -11,47 +10,57 @@ public class Algorithms extends Permutation {
 		if (caseNum < 1 || caseNum > 2)
 			throw new RuntimeException("Invalid case number " + caseNum);
 		switch (caseNum) {
-		case 1: //adjacent faced pairs
+		case 1: // adjacent faced pairs
 			rotate180(RIGHT);
 			rotateCW(UP);
 			rotate180(FRONT);
 			rotateCCW(UP);
 			rotate180(RIGHT);
 			break;
-		case 2: //opposite faced pairs
+		case 2: // opposite faced pairs
 			rotate180(RIGHT);
 			rotate180(UP);
 			rotate180(FRONT);
 			rotate180(UP);
 			rotate180(RIGHT);
 			break;
-		case 3: //rotate bottom face to match pairs initially
+		case 3: // rotate bottom face to match pairs initially
 			rotateCW(DOWN);
 			break;
 		}
 	}
-	
-	public static void insertBottomCorners(int caseNum){
-		if (caseNum < 1 || caseNum > 5){
+
+	public static void insertBottomCorners(int caseNum) {
+		if (caseNum < 1 || caseNum > 5) {
 			throw new RuntimeException("Invalid case number " + caseNum);
 		}
-		switch (caseNum){
-		case 1: //yellow piece is in bottom layer, bring it up top
+		switch (caseNum) {
+		case 1: // yellow piece is in bottom layer, bring it up top
 			rotateCW(RIGHT);
 			rotateCCW(UP);
 			rotateCCW(RIGHT);
 			break;
-		case 2: //
+		case 2: // rotates top face once
+			rotateCCW(UP);
 			break;
 		case 3:
+			rotateCW(RIGHT);
+			rotateCW(UP);
+			rotateCCW(RIGHT);
 			break;
 		case 4:
+			rotateCCW(FRONT);
+			rotateCCW(UP);
+			rotateCW(FRONT);
 			break;
 		case 5:
+			rotateCW(RIGHT);
+			rotateCCW(UP);
+			rotateCCW(RIGHT);
+			rotate180(UP);
 			break;
-		
-		}	
+		}
 	}
 
-	//more algorithms will be written out here...
+	// more algorithms will be written out here...
 }

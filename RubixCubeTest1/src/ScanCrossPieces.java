@@ -8,8 +8,15 @@ public class ScanCrossPieces extends Scanner {
 	// run the method
 	public static void run() {
 		setFlags();
-		if (sameFaces() == 4)
-			return; // faces are aligned
+		if (sameFaces() == 4) {
+			new Message("All faces aligned!");
+			return;
+		}
+		new Message("Rotate the yellow cross until some of the colours "
+				+ "around the sides begin to match. If you get it so "
+				+ "that one colour matches, keep rotating futher. "
+				+ "It is always possible to get at least 2 colours "
+				+ "to match");
 		alignBottom();
 		if (isAdjacent()) {
 			Cube.setOrientation(orientAdjacent());
@@ -21,7 +28,7 @@ public class ScanCrossPieces extends Scanner {
 	}
 
 	private static void setFlags() {
-		for (int i = 0, j = 0; i < pairs.length-1; i += 2, j++) {
+		for (int i = 0, j = 0; i < pairs.length - 1; i += 2, j++) {
 			flags[j] = equals(pairs[i], pairs[i + 1]);
 		}
 	}
