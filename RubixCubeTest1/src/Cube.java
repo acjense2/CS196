@@ -1,17 +1,21 @@
 /**
  * Cube superclass
- * defines variables for faces, orientations
+ * defines variables for colors, faces, orientations
  * defines basic methods done on cube array
  */
 
 public class Cube {
 
 	// cube array holds first letter of colors
-	protected char[] cube = new char[54];
-	protected int size = cube.length;
+	protected static char[] cube = { 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'R',
+		'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'B', 'B', 'B', 'B', 'B',
+		'B', 'B', 'B', 'B', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
+		'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'Y', 'Y', 'Y', 'Y',
+		'Y', 'Y', 'Y', 'Y', 'Y' };
+	protected static int size = cube.length;
 	
 	// orientation (used to employ algorithms relative to current orientation)
-	protected int orientation = 0;
+	protected static int orientation = 0;
 
 	protected final static int GREEN = 0;
 	protected final static int RED = 1;
@@ -20,20 +24,15 @@ public class Cube {
 	protected final static int WHITE = 4;
 	protected final static int YELLOW = 5;
 
-	protected int FRONT = 0;
-	protected int RIGHT = 1;
-	protected int BACK = 2;
-	protected int LEFT = 3;
-	protected int UP = 4;
-	protected int DOWN = 5;
-
-	//cube constructor
-	protected Cube(){
-		reset();
-	}
+	protected static int FRONT = 0;
+	protected static int RIGHT = 1;
+	protected static int BACK = 2;
+	protected static int LEFT = 3;
+	protected static int UP = 4;
+	protected static int DOWN = 5;
 	
 	//reset the cube to complete configuration
-	protected void reset(){
+	protected static void reset(){
 		char[] newCube = { 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'R',
 				'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'B', 'B', 'B', 'B', 'B',
 				'B', 'B', 'B', 'B', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O',
@@ -41,12 +40,17 @@ public class Cube {
 				'Y', 'Y', 'Y', 'Y', 'Y' };
 		cube = newCube;
 	}
+	
+	// @return char color at @index
+	protected static char getColor(int index) {
+		return cube[index];
+	}
 
 	// gives string representation of cube
 	// @param cubeFormat
 	// true: @return a string representation in blocks
 	// false: @return a string representation in lists
-	public String toString(boolean format) {
+	public static String toString(boolean format) {
 		StringBuffer buff = new StringBuffer();
 		for (int i = 0; i < size; i++) {
 			buff.append(cube[i]);
@@ -63,11 +67,11 @@ public class Cube {
 		return buff.toString();
 	}
 	
-	// changes orientation and relative values
-	public void setOrientation(int orientation) {
-		if (orientation<FRONT || orientation >DOWN)
+	// changes orientation and relative values (Front, back, etc)
+	public static void setOrientation(int orient) {
+		if (orient<FRONT || orient >DOWN)
 			throw new RuntimeException("Impossible orientation");
-		this.orientation = orientation;
+		orientation = orient;
 		switch (orientation) {
 		case GREEN:
 			FRONT = GREEN;

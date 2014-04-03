@@ -1,28 +1,16 @@
-public class solveCube extends Cube {
+public class solveCube {
 
 	/**
-	 * employ whatever algorithms (and perms if you want) here. Need scanner
-	 * class to know what algorithms to use here!!! Ideas Jordan? Use the
-	 * ryanheise.com/cube/beginner.html website for ideas on scanner
+	 * call scanners and prints here
 	 * **/
 	public static void main(String[] args) {
 
-		Scanner cube = new Scanner();
-
-		TextIO.putln(cube.toString(false));
-		cube.rotateCW(1);
-		cube.rotateCW(4);
-		cube.rotateCCW(1);
-		TextIO.putln(cube.toString(true));
-
-		cube.reset();
-
-		TextIO.putln(cube.toString(false));
-		cube.setOrientation(RED);
-		cube.swapCrossPieces(1);
-		TextIO.putln(cube.toString(true));
-		cube.swapCrossPieces(1);
-		TextIO.putln(cube.toString(true));
+		
+		
+		/* CROSS PIECES */
+		TextIO.putln(Cube.toString(false));
+		ScanCrossPieces.run();
+		TextIO.putln(Cube.toString(true));
 
 	}
 

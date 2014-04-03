@@ -1,13 +1,11 @@
 
-public class Scanner extends Algorithms{
+/* ryanheise.com/cube/beginner.html*/
+
+public class Scanner {
 	
-	protected char getColor(int index){
-		return cube[index];
-	}
-	
-	public boolean equals(int index1, int index2) {
-		char top = getColor(index1);
-		char bot = getColor(index2);
+	public static boolean equals(int index1, int index2) {
+		char top = Cube.getColor(index1);
+		char bot = Cube.getColor(index2);
 		return (top == bot);
 	}
 }

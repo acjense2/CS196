@@ -59,7 +59,7 @@ public class Permutation extends Cube {
 	}
 
 	// rotates @face counter-clockwise once
-	protected void rotateCCW(int face) {
+	protected static void rotateCCW(int face) {
 		char[] newCube = new char[size];
 		for (int i = 0; i < size; i++) {
 			// value in cube goes new address stated in perm
@@ -69,26 +69,21 @@ public class Permutation extends Cube {
 	}
 
 	// rotates @face clockwise once
-	protected void rotateCW(int face) {
+	protected static void rotateCW(int face) {
 		rotateCCW(face);
 		rotateCCW(face);
 		rotateCCW(face);
 	}
 
 	// rotates @face clockwise twice
-	protected void rotate180(int face) {
+	protected static void rotate180(int face) {
 		rotateCW(face);
 		rotateCW(face);
-	}
-
-	// @return color at @index
-	protected char getColor(int index) {
-		return cube[index];
 	}
 
 	// finds duplicate permutation values
 	// @return -1 if no duplicates, else @return index of first duplicate
-	public int checkPerms() {
+	public static int checkPerms() {
 		for (int i = 0; i < numFaces; i++) {
 			for (int j = 0; j < size; j++) {
 				int compare = perm[i][j];
