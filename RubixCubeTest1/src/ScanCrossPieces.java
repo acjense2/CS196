@@ -35,6 +35,7 @@ public class ScanCrossPieces extends Scanner {
 
 	// returns number of faces that have pairs
 	private static int sameFaces() {
+		setFlags();
 		int count = 0;
 		for (int i = 0; i < flags.length; i++) {
 			if (flags[i])
@@ -44,6 +45,7 @@ public class ScanCrossPieces extends Scanner {
 	}
 
 	private static void alignBottom() {
+		setFlags();
 		while (sameFaces() < 2) {
 			Algorithms.swapCrossPieces(3);
 		}
@@ -51,7 +53,8 @@ public class ScanCrossPieces extends Scanner {
 
 	// returns face that will set orientation
 	private static int orientAdjacent() {
-		if (flags[0] && flags[3])
+		setFlags();
+		if (!flags[0] && !flags[3])
 			return 3;
 		for (int i = 0; i < flags.length; i++) {
 			if (flags[i])
@@ -61,6 +64,7 @@ public class ScanCrossPieces extends Scanner {
 	}
 
 	private static boolean isAdjacent() {
+		setFlags();
 		for (int i = 0; i < flags.length - 1; i++) {
 			if (flags[i] && flags[i + 1])
 				return true;
@@ -69,6 +73,7 @@ public class ScanCrossPieces extends Scanner {
 	}
 
 	public static int orientOpposite() {
+		setFlags();
 		for (int i = 0; i < flags.length; i++) {
 			if (flags[i])
 				return i;

@@ -41,6 +41,10 @@ public class Cube {
 		cube = newCube;
 	}
 	
+	protected static void setTo(char[] newCube){
+		cube = newCube;
+	}
+	
 	// @return char color at @index
 	protected static char getColor(int index) {
 		return cube[index];
@@ -65,6 +69,10 @@ public class Cube {
 				buff.append("\n");
 		}
 		return buff.toString();
+	}
+	
+	public static int getOrientation(){
+		return orientation;
 	}
 	
 	// changes orientation and relative values (Front, back, etc)

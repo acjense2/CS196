@@ -5,7 +5,6 @@ public class Message {
 	public Message (String msg){
 		message = msg;
 		print();
-		TextIO.getln();
 	}
 	
 	public String print(){
