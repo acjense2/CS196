@@ -77,7 +77,7 @@ public class Cube {
 	
 	// changes orientation and relative values (Front, back, etc)
 	public static void setOrientation(int orient) {
-		if (orient<FRONT || orient >DOWN)
+		if (orient<GREEN || orient >YELLOW)
 			throw new RuntimeException("Impossible orientation");
 		orientation = orient;
 		switch (orientation) {
