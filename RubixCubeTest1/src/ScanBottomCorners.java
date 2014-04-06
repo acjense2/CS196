@@ -2,10 +2,8 @@ public class ScanBottomCorners extends Scanner{
 	// contains any possible [positions of the yellow corners
 	private static int[] index = {0, 2, 9, 11, 18, 20, 27, 29, 36, 38, 42, 44, 6, 8, 15, 17, 24, 26, 33, 35, 45, 47, 51, 53};
 	
-	// contains flags checking whether corners are correct
-	private static boolean[] yellowCorners = {GR, RB, BO, OG};
-	
-	
+	// contains flags checking whether corners are correct gr, rb, bo, og
+	private static boolean[] yellowCorners = new boolean[4];
 	
 	public static void run(){
 		setFlags();
@@ -20,19 +18,19 @@ public class ScanBottomCorners extends Scanner{
 	
 	public static void setFlags(){
 		// sets corner flag to true if that corner is correct
-		if(getColor(45) == 'Y' && getColor(6) == 'G' && getColor(35) == 'O')
+		if(Cube.getColor(45) == 'Y' && Cube.getColor(6) == 'G' && Cube.getColor(35) == 'O')
 			yellowCorners[3] = true;
 		else yellowCorners[3] = false;
 		
-		if(getColor(47) == 'Y' && getColor(8) == 'G' && getColor(15) == 'R')
+		if(Cube.getColor(47) == 'Y' && Cube.getColor(8) == 'G' && Cube.getColor(15) == 'R')
 			yellowCorners[0] = true;
 		else yellowCorners[0] = false;
 		
-		if(getColor(53) == 'Y' && getColor(17)) == 'R' && getColor(24) == 'B')
+		if(Cube.getColor(53) == 'Y' && Cube.getColor(17) == 'R' && Cube.getColor(24) == 'B')
 			yellowCorners[1] = true;
 		else yellowCorners[1] = false;
 		
-		if(getColor(51) == 'Y' && getColor(26)) == 'B' && getColor(33) == 'O')
+		if(Cube.getColor(51) == 'Y' && Cube.getColor(26) == 'B' && Cube.getColor(33) == 'O')
 			yellowCorners[1] = true;
 		else yellowCorners[1] = false;
 	
@@ -54,7 +52,7 @@ public class ScanBottomCorners extends Scanner{
 	
 		while(!bottomYellow){
 			for(int i = 12; i < index.length; i++){
-				if (getColor(index[i]) == 'Y'){
+				if (Cube.getColor(index[i]) == 'Y'){
 					if(index[i] == 35 || index[i] == 6){
 						Cube.setOrientation(3);}
 					else if(index[i] == 8 || index[i] == 15){
@@ -63,18 +61,19 @@ public class ScanBottomCorners extends Scanner{
 						Cube.setOrientation(1);}
 					else if(index[i] == 26 || index[i] == 33){
 						Cube.setOrientation(2);}
-					else if(index[i] == 45  && (getColor(6) != 'G' || getColor(35) != 'O')){
+					else if(index[i] == 45  && (Cube.getColor(6) != 'G' || Cube.getColor(35) != 'O')){
 						Cube.setOrientation(3);}
-					else if(index[i] == 47  && (getColor(8) != 'G' || getColor(15) != 'R')){
+					else if(index[i] == 47  && (Cube.getColor(8) != 'G' || Cube.getColor(15) != 'R')){
 						Cube.setOrientation(0);}
-					else if(index[i] == 51  && (getColor(26) != 'B' || getColor(33) != 'O')){
+					else if(index[i] == 51  && (Cube.getColor(26) != 'B' || Cube.getColor(33) != 'O')){
 						Cube.setOrientation(1);}
-					else if(index[i] == 53  && (getColor(17) != 'R' || getColor(24) != 'B')){
+					else if(index[i] == 53  && (Cube.getColor(17) != 'R' || Cube.getColor(24) != 'B')){
 						Cube.setOrientation(2);}
-					else bottomYellow = true;
 				}	
+				else bottomYellow = true;
+					
 				if(!bottomYellow){
-					Algorithm.insertBottomCorners(1);}
+					Algorithms.insertBottomCorners(1);}
 			}
 		}
 	}
@@ -112,12 +111,13 @@ public class ScanBottomCorners extends Scanner{
 			Algorithms.insertBottomCorners(2);
 			return ScanBottomCorners.checkColumn(i);
 		}
+		return false;
 	}
 	
 
 	public static void placeCorner(){
 		for(int i = 0; i < 12; i++){
-			if(getColor(index[i]) == 'Y'){
+			if(Cube.getColor(index[i]) == 'Y'){
 				if(index[i] == 0 || index[i] == 29 || index[i] == 42){
 					Cube.setOrientation(3);}
 				else if(index[i] == 2 || index[i] == 9 || index[i] == 44){
