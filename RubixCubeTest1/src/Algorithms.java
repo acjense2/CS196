@@ -78,13 +78,13 @@ public class Algorithms extends Permutation {
 			break;
 		case 2: // mirror case of 1
 			rotateCCW(UP);
-			rotateCCW(FRONT);
+			rotateCCW(LEFT);
+			rotateCW(UP);
+			rotateCW(LEFT);
 			rotateCW(UP);
 			rotateCW(FRONT);
-			rotateCW(UP);
-			rotateCW(RIGHT);
 			rotateCCW(UP);
-			rotateCCW(RIGHT);
+			rotateCCW(FRONT);
 			break;
 		case 3: // "force out" the piece
 			// this is equal to case 1 OR 2, doesn't need to be called

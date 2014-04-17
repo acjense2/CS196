@@ -15,11 +15,14 @@ public class solveCube {
 				'R', 'O', 'G', 'R', 'O', 'G', 'W', 'O', 'R',
 				'Y', 'G', 'Y', 'G', 'W', 'B', 'R', 'W', 'O',
 				'B', 'Y', 'G', 'Y', 'Y', 'Y', 'O', 'Y', 'G'};
-		String stringCube = "YOWOGGGGGOWYRROWRYBRRBBBGBWBWBWOWOOOWBRGWROGGYYRYYYBYR";
+		//bottomcorners//String stringCube = "YOWOGGGGGOWYRROWRYBRRBBBGBWBWBWOWOOOWBRGWROGGYYRYYYBYR";
+		//secondlayer
+		String stringCube = "BBRGGBGGGWGWRRWRRRROGRBWBBBWWWBOOOOOOWBGWROOGYYYYYYYYY";
 		testCube=stringCube.toCharArray();
 		Cube.setTo(testCube);
 		TextIO.putln(Cube.toString(true));
 		
+		/*
 		new Message("STEP 2: SCANNING FOR CROSS PIECES");
 		ScanCrossPieces.run();
 		new Message("STEP 2: done");
@@ -29,6 +32,7 @@ public class solveCube {
 		ScanBottomCorners.run();
 		new Message("STEP 3: done");
 		TextIO.putln(Cube.toString(true));
+		*/
 
 		new Message("STEP 4: SCANNING FOR SECOND LAYER");
 		ScanSecondLayer.run();
