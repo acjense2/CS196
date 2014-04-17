@@ -30,7 +30,8 @@ public class solveCube {
 		 * ScanTopCornersUp.run(); new Message("STEP 6: DONE");
 		 */
 		
-		//STEP 7
+		new Message("STEP 7: SCANNING SIDES OF TOP CORNERS");
+		ScanTopCornerSides.run(); new Message("STEP 7: DONE");
 		
 		new Message("STEP 8: SCANNING FOR TOP EDGES");
 		ScanTopEdges.run();
