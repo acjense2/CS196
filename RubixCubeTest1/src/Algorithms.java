@@ -147,7 +147,7 @@ public class Algorithms extends Permutation {
 	}
 
 	public static void positionCorners(int caseNum) {
-		if (caseNum < 1 || caseNum > 2)
+		if (caseNum < 1 || caseNum > 3)
 			throw new RuntimeException("Invalid case number " + caseNum);
 		switch (caseNum) {
 		case 1: // used in ryanheise cases 1,4
