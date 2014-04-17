@@ -6,6 +6,9 @@
 
 public class Cube {
 
+
+	public static String completeCube = "GGGGGGGGGRRRRRRRRRBBBBBBBBBOOOOOOOOOWWWWWWWWWYYYYYYYYY";
+	
 	// cube array holds first letter of colors
 	protected static char[] cube = { 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'G', 'R',
 		'R', 'R', 'R', 'R', 'R', 'R', 'R', 'R', 'B', 'B', 'B', 'B', 'B',
@@ -48,6 +51,10 @@ public class Cube {
 	// @return char color at @index
 	protected static char getColor(int index) {
 		return cube[index];
+	}
+	
+	public static boolean equals(String cube){
+		return (cube.equals(completeCube));
 	}
 
 	// gives string representation of cube

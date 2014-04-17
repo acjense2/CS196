@@ -12,18 +12,21 @@ public class ScanTopEdges extends Scanner {
 		if (countFlags() == 4) // FINISHED
 			return;
 
-		if (countFlags() == 0) // ryanheise case 3
+		if (countFlags() == 0) { // ryanheise case 3
 			Algorithms.makeCornersFaceUp(1);
-
+			Cube.setOrientation(Cube.RIGHT);
+			Algorithms.makeCornersFaceUp(2);
+		}
+		
 		if (countFlags() == 1) {
 			Cube.setOrientation(orient());
-			if (isClockwise()) { //ryanheise case 1
+			if (isClockwise()) { // ryanheise case 1
 				Algorithms.makeCornersFaceUp(1);
 				Cube.setOrientation(Cube.RIGHT);
 				Algorithms.makeCornersFaceUp(2);
 			}
 
-			else { //ryanheise case 2
+			else { // ryanheise case 2
 				Algorithms.makeCornersFaceUp(2);
 				Cube.setOrientation(Cube.LEFT);
 				Algorithms.makeCornersFaceUp(1);
@@ -61,13 +64,13 @@ public class ScanTopEdges extends Scanner {
 	// returns orientation
 	public static int orient() {
 		for (int i = 0; i < flags.length; i++) {
-			if (flags[i] == false)
+			if (flags[i] == true)
 				return (i + 2) % 4; // opposite of complete face
 		}
 		return -1;
 	}
 
-	public static boolean isClockwise(){
+	public static boolean isClockwise() {
 		char cube1 = Cube.getColor(centerPieces[Cube.FRONT]);
 		char cube2 = Cube.getColor(topLayerCenter[Cube.RIGHT]);
 		return cube1 == cube2;
