@@ -38,7 +38,15 @@ public class solveCube {
 
 		new Message("STEP 4: SCANNING FOR SECOND LAYER");
 		ScanSecondLayer.run();
-		new Message("STEP 4; done");
+		new Message("STEP 4: done");
+		
+		new Message("STEP 5: SCANNING FOR TOP CROSSPIECES");
+		ScanTopCross.run();
+		new Message("STEP 5: DONE");
+		
+		new Message("STEP 6: SCANNING FOR TOP CORNERS");
+		ScanTopCornersUp.run();
+		new Message("STEP 6: DONE");
 		TextIO.putln(Cube.toString(true));
 		
 	}
