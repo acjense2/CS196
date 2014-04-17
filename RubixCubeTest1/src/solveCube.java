@@ -20,14 +20,19 @@ public class solveCube {
 		Cube.setTo(testCube);
 		TextIO.putln(Cube.toString(true));
 		
-		/*
 		new Message("STEP 2: SCANNING FOR CROSS PIECES");
 		ScanCrossPieces.run();
-		 */
+		new Message("STEP 2: done");
+		TextIO.putln(Cube.toString(true));
 		
-		new Message("STEP 3254: SCANNING FOR CROSS PIECES");
+		new Message("STEP 3: SCANNING FOR BOTTOM CORNERS");
 		ScanBottomCorners.run();
-		new Message("STEP 3254: done");
+		new Message("STEP 3: done");
+		TextIO.putln(Cube.toString(true));
+
+		new Message("STEP 4: SCANNING FOR SECOND LAYER");
+		ScanSecondLayer.run();
+		new Message("STEP 4; done");
 		TextIO.putln(Cube.toString(true));
 	}
 
