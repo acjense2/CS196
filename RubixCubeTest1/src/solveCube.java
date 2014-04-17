@@ -47,6 +47,10 @@ public class solveCube {
 		new Message("STEP 6: SCANNING FOR TOP CORNERS");
 		ScanTopCornersUp.run();
 		new Message("STEP 6: DONE");
+		
+		new Message("STEP 7: SCANNING FOR TOP EDGES");
+		ScanTopEdges.run();
+		new Message("STEP 7: DONE");
 		TextIO.putln(Cube.toString(true));
 		
 	}
