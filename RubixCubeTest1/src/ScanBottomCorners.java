@@ -97,7 +97,7 @@ public class ScanBottomCorners extends Scanner {
 				// if rotate == false, no yellows found
 				if (rotate == true) {
 					Algorithms.insertBottomCorners(1);
-					Algorithms.RotateCW(Cube.UP);
+					Permutation.rotateCW(Cube.UP);
 					i = 11; // look thru again because a yellow might have moved
 							// into our spot we just found!
 				}
