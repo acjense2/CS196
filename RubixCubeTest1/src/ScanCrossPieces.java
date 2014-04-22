@@ -57,7 +57,7 @@ public class ScanCrossPieces extends Scanner {
 		if (!flags[0] && !flags[3])
 			return 3;
 		for (int i = 0; i < flags.length; i++) {
-			if (flags[i])
+			if (!flags[i])
 				return i;
 		}
 		return -1;
@@ -66,7 +66,7 @@ public class ScanCrossPieces extends Scanner {
 	private static boolean isAdjacent() {
 		setFlags();
 		for (int i = 0; i < flags.length - 1; i++) {
-			if (flags[i] && flags[i + 1])
+			if ((flags[i] && flags[i + 1]) || (flags[0] && flags[3]))
 				return true;
 		}
 		return false;
