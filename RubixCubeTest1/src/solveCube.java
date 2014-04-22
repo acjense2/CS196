@@ -7,7 +7,7 @@ public class solveCube {
 
 		new Message("Solving this cube:");
 
-		String stringCube = "GRGGGGGGGRGRRRRRRRBOBBBBBBBOBOOOOOOOWWWWWWWWWYYYYYYYYY";
+		String stringCube = "YWYOGOGGBOGRGRBYRWBWWRBGRBGBBOWOWOOYOBWOWRGRBRYRYYYWYG";
 		Cube.setTo(stringCube.toCharArray());
 		TextIO.putln(Cube.toString(true));
 
@@ -18,6 +18,8 @@ public class solveCube {
 		new Message("STEP 3: SCANNING FOR BOTTOM CORNERS");
 		ScanBottomCorners.run();
 		new Message("STEP 3: done");
+		
+		TextIO.putln(Cube.toString(true));
 
 		new Message("STEP 4: SCANNING FOR SECOND LAYER");
 		ScanSecondLayer.run();
@@ -42,6 +44,8 @@ public class solveCube {
 		TextIO.putln(Cube.toString(true));
 		if (Cube.equals(stringCube))
 			new Message("CUBE SOLVED!");
+		else
+			new Message("Failed");
 	}
 
 }

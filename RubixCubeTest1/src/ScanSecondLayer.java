@@ -26,17 +26,27 @@ public class ScanSecondLayer extends Scanner {
 		}
 
 		// ryanheise case 3
-		int i = forceOut();
-		if (i != -1) {
-			Cube.setOrientation(i);
-			Algorithms.secondLayer(3);
+		int i = 0;
+		while (i != -1) {
+			i = forceOut();
+			if (i != -1) {
+				Cube.setOrientation(i);
+				Algorithms.secondLayer(3);
+			}
 		}
 
+		TextIO.putln(Cube.toString(true));
 		// ryanheise case 1 and 2
 		do {
 			setFlags();
 			alignTop();
+			TextIO.putln("aligned top");
+			TextIO.putln(Cube.toString(true));
 			Cube.setOrientation(orient());
+			if (sameFaces() > 1) {
+				if (isWhite(topEdges[Cube.FRONT]))
+					Cube.setOrientation(orientReverse());
+			}
 		} while (isWhite(topEdges[Cube.FRONT])); // if the corresponding top
 													// edge cube is white, try
 													// again
@@ -76,6 +86,15 @@ public class ScanSecondLayer extends Scanner {
 	private static int orient() {
 		setFlags();
 		for (int i = 0; i < flags.length; i++) {
+			if (flags[i])
+				return i;
+		}
+		return -1;
+	}
+
+	private static int orientReverse() {
+		setFlags();
+		for (int i = flags.length-1; i > -1; i--) {
 			if (flags[i])
 				return i;
 		}
