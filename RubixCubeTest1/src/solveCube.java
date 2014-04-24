@@ -10,6 +10,8 @@ public class solveCube {
 		String stringCube = "YWYOGOGGBOGRGRBYRWBWWRBGRBGBBOWOWOOYOBWOWRGRBRYRYYYWYG";
 		Cube.setTo(stringCube.toCharArray());
 		TextIO.putln(Cube.toString(true));
+		
+		ErrorCheck.errorcheck();
 
 		new Message("STEP 2: SCANNING FOR CROSS PIECES");
 		ScanCrossPieces.run();
@@ -18,8 +20,6 @@ public class solveCube {
 		new Message("STEP 3: SCANNING FOR BOTTOM CORNERS");
 		ScanBottomCorners.run();
 		new Message("STEP 3: done");
-		
-		TextIO.putln(Cube.toString(true));
 
 		new Message("STEP 4: SCANNING FOR SECOND LAYER");
 		ScanSecondLayer.run();
