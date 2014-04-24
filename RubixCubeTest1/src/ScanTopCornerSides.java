@@ -26,6 +26,7 @@ public class ScanTopCornerSides extends Scanner{
 	}
 
 	public static int correctFlags(){
+		setFlags();
 		int count = 0;
 		for(int i = 0; i < whiteCorners.length; i++){
 			if(whiteCorners[i]) count++;
@@ -36,12 +37,55 @@ public class ScanTopCornerSides extends Scanner{
 	public static int orientTop(){
 		setFlags();
 		int count = correctFlags();
-		if(whiteCorners[0] && (Cube.getColor(18) == Cube.getColor(20)))
+		if(whiteCorners[0] && (Cube.getColor(18) == Cube.getColor(20))){
+			Cube.setOrientation(0);
 			return 1;
-		if(whiteCorners[1] && (Cube.getColor(18) == Cube.getColor(20)))
+		}
+		if(whiteCorners[1] && (Cube.getColor(18) == Cube.getColor(20))){
+			Cube.setOrientation(0);
 			return 2;
-		if(whiteCorners[1] && count >= 2)
+		}
+		if(whiteCorners[1] && (Cube.getColor(27) == Cube.getColor(29))){
+			Cube.setOrientation(1);
 			return 1;
+		}
+		if(whiteCorners[2] && (Cube.getColor(27) == Cube.getColor(29))){
+			Cube.setOrientation(1);
+			return 2;
+		}
+		if(whiteCorners[2] && (Cube.getColor(0) == Cube.getColor(2))){
+			Cube.setOrientation(2);
+			return 1;
+		}
+		if(whiteCorners[3] && (Cube.getColor(0) == Cube.getColor(2))){
+			Cube.setOrientation(2);
+			return 2;
+		}
+		if(whiteCorners[3] && (Cube.getColor(9) == Cube.getColor(11))){
+			Cube.setOrientation(3);
+			return 1;
+		}
+		if(whiteCorners[0] && (Cube.getColor(9) == Cube.getColor(11))){
+			Cube.setOrientation(3);
+			return 2;
+		}
+		
+		if(whiteCorners[1] && count >= 2){
+			Cube.setOrientation(0);
+			return 1;
+		}
+		if(whiteCorners[2] && count >= 2){
+			Cube.setOrientation(1);
+			return 1;
+		}
+		if(whiteCorners[3] && count >= 2){
+			Cube.setOrientation(2);
+			return 1;
+		}
+		if(whiteCorners[0] && count >= 2){
+			Cube.setOrientation(3);
+			return 1;
+		}
 		return 3;
 			
 	}
@@ -53,6 +97,6 @@ public class ScanTopCornerSides extends Scanner{
 		while(orientTop() == 3)
 			Algorithms.positionCorners(3);
 		Algorithms.positionCorners(orientTop());
-		TextIO.putln(Cube.toString(true));
+		
 	}
 }
