@@ -11,7 +11,7 @@ public class solveCube {
 		Cube.setTo(stringCube.toCharArray());
 		TextIO.putln(Cube.toString(true));
 		
-		ErrorCheck.errorcheck();
+		ErrorCheck.errorCheck();
 
 		new Message("STEP 2: SCANNING FOR CROSS PIECES");
 		ScanCrossPieces.run();
